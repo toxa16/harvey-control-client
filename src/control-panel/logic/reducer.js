@@ -30,10 +30,26 @@ export default function controlPanelReducer(state = initialState, action) {
         networkStatus: NetworkStatus.ONLINE,
       });
     }
-    /*case ActionType.MACHINE_START: {
-      console.log('machine start');
-      return state;
-    }*/
+    case ActionType.MACHINE_START: {
+      return Object.assign({}, state, {
+        powerStatus: PowerStatus.STARTING,
+      });
+    }
+    case ActionType.MACHINE_STARTED: {
+      return Object.assign({}, state, {
+        powerStatus: PowerStatus.STARTED,
+      });
+    }
+    case ActionType.MACHINE_STOP: {
+      return Object.assign({}, state, {
+        powerStatus: PowerStatus.STOPPING,
+      });
+    }
+    case ActionType.MACHINE_STOPPED: {
+      return Object.assign({}, state, {
+        powerStatus: PowerStatus.STOPPED,
+      });
+    }
     default: return state;
   }
 }

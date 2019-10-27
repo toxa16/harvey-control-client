@@ -52,6 +52,7 @@ function* listenPowerButton(socket) {
     yield take(ActionType.MACHINE_START);
     console.log('machine start');
     action = { type: ActionType.MACHINE_START };
+    yield put(action);
     socket.send(JSON.stringify(action));
   }
 }
