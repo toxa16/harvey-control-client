@@ -30,6 +30,10 @@ export default function controlPanelReducer(state = initialState, action) {
         networkStatus: NetworkStatus.ONLINE,
       });
     }
+    /*case ActionType.MACHINE_START: {
+      console.log('machine start');
+      return state;
+    }*/
     default: return state;
   }
 }

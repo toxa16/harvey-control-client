@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import PowerBlock from './PowerBlock';
+import ActionType from '../logic/action-type.enum';
 
 function mapStateToProps(state) {
   return {
@@ -10,7 +11,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    onStart: () => dispatch({ type: ActionType.MACHINE_START }),
+    onStop: () => dispatch({ type: ActionType.MACHINE_STOP }),
+  };
 }
 
 const ConnectedPowerBlock = connect(

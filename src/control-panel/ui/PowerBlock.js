@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PowerStatus, NetworkStatus } from '../logic/enums';
 
-export default function PowerBlock({ networkStatus, powerStatus }) {
+export default function PowerBlock({ networkStatus, powerStatus, onStart, onStop }) {
   const isMachineOnline = networkStatus === NetworkStatus.ONLINE;
 
   const displayPowerStatus = () => {
@@ -32,12 +32,28 @@ export default function PowerBlock({ networkStatus, powerStatus }) {
     }
   };
 
+  function handleClick() {
+    if (powerStatus === PowerStatus.STOPPED) {
+      onStart();
+    } else if (powerStatus === PowerStatus.STARTED) {
+      onStop();
+    } else {
+      return;
+    }
+  }
+
   const buttonClassName = 'btn btn-lg ' +
     (isMachineOnline ? getPowerButtonClassName() : 'btn-secondary');
   return (
     <div className="mt-5">
       <h4 className="mb-3">Power On/Off:</h4>
-      <button className={buttonClassName} disabled={!isMachineOnline}>On/Off</button>
+      <button
+        className={buttonClassName}
+        disabled={!isMachineOnline}
+        onClick={handleClick}
+      >
+        On/Off
+      </button>
       <div className="mt-3">
         <span>Machine power status:</span>
         {' '}
