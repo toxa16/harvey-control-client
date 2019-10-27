@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import controlPanelReducer from './control-panel/logic/reducer';
+import rootSaga from './root-saga';
 
-const store = createStore(combineReducers({
-  controlPanel: controlPanelReducer,
-}));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  combineReducers({
+    controlPanel: controlPanelReducer,
+  }),
+  applyMiddleware(sagaMiddleware),
+);
+sagaMiddleware.run(rootSaga);
 
 const root = document.getElementById('root');
 ReactDOM.render(
