@@ -3,7 +3,16 @@ import React from 'react';
 export default function ControllerRejected() {
   return (
     <div>
-      <div className="text-danger">Unable to connect to the control server.</div>
+      <p className="text-danger">Unable to connect to the control server.</p>
+
+      <p className="text-muted">
+        Current prototype version of the <b>harvey.one</b> control system 
+        doesn't allow to connect more than one concurrent controllers 
+        to the control server.
+      </p>
+      <p className="text-muted">
+        Seems that there is another controller connected to the server.
+      </p>
     </div>
   );
 }

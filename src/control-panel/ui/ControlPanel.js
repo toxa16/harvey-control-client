@@ -1,11 +1,13 @@
 import React from 'react';
 
 import ControllerAccepted from './ControllerAccepted';
+import ControllerPending from './ControllerPending';
+import ControllerRejected from './ControllerRejected';
 
 /**
  * Main control panel component.
  */
-export default function ControlPanel({ networkStatus }) {
+export default function ControlPanel({ controllerStatus, networkStatus }) {
   return (
     <div className="pt-5">
       <div className="container">

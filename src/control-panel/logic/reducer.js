@@ -1,8 +1,9 @@
 import ActionType from './action-type.enum';
-import { NetworkStatus } from './enums';
+import { NetworkStatus, ControllerStatus } from './enums';
 
 const initialState = {
   networkStatus: NetworkStatus.OFFLINE,
+  controllerStatus: ControllerStatus.PENDING,
 };
 
 export default function controlPanelReducer(state = initialState, action) {
