@@ -1,4 +1,4 @@
-import { call, take } from 'redux-saga/effects';
+import { call, put, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 
 function websocketChannel(socket) {
@@ -26,6 +26,7 @@ function* watchChannel(channel) {
   while (true) {
     const action = yield take(channel);
     console.log(action);
+    yield put(action);
   }
 }
 
