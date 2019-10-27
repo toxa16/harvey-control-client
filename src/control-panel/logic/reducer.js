@@ -1,5 +1,5 @@
 import MachineStatus from './machine-status.enum';
-import ActionType from './ActionType';
+import ActionType from './action-type.enum';
 
 const initialState = {
   machineStatus: MachineStatus.OFFLINE,

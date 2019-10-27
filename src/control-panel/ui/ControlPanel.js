@@ -2,6 +2,12 @@ import React from 'react';
 
 import MachineStatus from '../logic/machine-status.enum';
 
+/*function MachineNetworkStatus({ machineStatus }) {
+  return (
+    <div></div>
+  );
+}*/
+
 export default function ControlPanel({ machineStatus }) {
   const isMachineOnline = machineStatus === MachineStatus.ONLINE;
   const displayMachineStatus = () => {
