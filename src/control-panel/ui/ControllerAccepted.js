@@ -44,6 +44,14 @@ function PowerStatusDisplay() {
   );
 }
 
-export default function ControllerAccepted() {
-  return ;
+export default function ControllerAccepted({ networkStatus }) {
+  return (
+    <div>
+      <div className="mb-5">
+        <NetworkStatusDisplay status={networkStatus} />
+      </div>
+
+      <PowerStatusDisplay />
+    </div>
+  );
 }
