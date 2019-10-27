@@ -3,6 +3,13 @@ import { eventChannel } from 'redux-saga';
 
 function websocketChannel(socket) {
   return eventChannel(emit => {
+    const onOpen = () => {
+      console.log('Connected to the Control Server.');
+      const machineConnectAction = {
+        type: 'CONTROLLER_CONNECT',
+      };
+      socket.send(JSON.stringify(machineConnectAction));
+    };
     const onMessage = e => {
       const message = e.data;
       emit(JSON.parse(message));
@@ -12,10 +19,12 @@ function websocketChannel(socket) {
       console.error(err);
     }
 
+    socket.addEventListener('open', onOpen);
     socket.addEventListener('error', onError);
     socket.addEventListener('message', onMessage);
 
     return () => {
+      socket.removeEventListener('open', onOpen);
       socket.removeEventListener('error', onError);
       socket.removeEventListener('message', onMessage)
     }
