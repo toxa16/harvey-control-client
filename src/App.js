@@ -2,13 +2,13 @@ import React from 'react';
 
 import './App.css';
 import Navbar from './Navbar/Navbar';
-import ControlPanel from './control-panel/ui/ControlPanel';
+import ConnectedControlPanel from './control-panel/ui/ConnectedControlPanel';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <ControlPanel />
+      <ConnectedControlPanel />
     </div>
   );
 }

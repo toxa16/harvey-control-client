@@ -8,7 +8,7 @@ export default function ControlPanel() {
           <h1>Control Panel</h1>
         </div>
         <div className="mt-5">
-          <span>Machine online status:</span>
+          <span>Machine network status:</span>
           {' '}
           <span className="text-success text-uppercase font-weight-bold">Online</span>
         </div>
