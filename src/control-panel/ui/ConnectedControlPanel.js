@@ -5,6 +5,7 @@ import ControlPanel from './ControlPanel';
 function mapStateToProps(state) {
   return {
     networkStatus: state.controlPanel.networkStatus,
+    controllerStatus: state.controlPanel.controllerStatus,
   };
 }
 
