@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { NetworkStatus, PowerStatus } from '../logic/enums';
+import { NetworkStatus } from '../logic/enums';
+import ConnectedPowerBlock from './ConnectedPowerBlock';
 
 /**
  * Displays machine network status.
@@ -27,64 +28,6 @@ function NetworkStatusDisplay({ status }) {
   );
 }
 
-/**
- * Displays machine power status.
- */
-function PowerStatusDisplay({ status }) {
-  const displayPowerStatus = () => {
-    switch (status) {
-      case PowerStatus.STARTING: return 'Starting...';
-      case PowerStatus.STARTED: return 'Started';
-      case PowerStatus.STOPPING: return 'Stopping...';
-      default: return 'Stopped';
-    }
-  };
-
-  const getPowerStatusClassName = () => {
-    switch (status) {
-      case PowerStatus.STARTING: return 'text-warning';
-      case PowerStatus.STARTED: return 'text-success';
-      case PowerStatus.STOPPING: return 'text-warning.';
-      default: return 'text-danger';
-    }
-  };
-
-  const getPowerButtonClassName = () => {
-    let colorClassName;
-    switch (status) {
-      case PowerStatus.STARTING: {
-        colorClassName = 'text-warning';
-        break;
-      };
-      case PowerStatus.STARTED: {
-        colorClassName = 'text-success';
-        break;
-      };
-      case PowerStatus.STOPPING: {
-        colorClassName = 'text-warning';
-        break;
-      };
-      default: {
-        colorClassName = 'text-danger';
-      };
-    }
-  };
-
-  return (
-    <div className="mt-5">
-      <p>Power On/Off:</p>
-      <button className="btn btn-lg btn-danger">On/Off</button>
-      <div className="mt-3">
-        <span>Power status:</span>
-        {' '}
-        <span className={getPowerStatusClassName()}>
-          { displayPowerStatus() }
-        </span>
-      </div>
-    </div>
-  );
-}
-
 export default function ControllerAccepted({ networkStatus }) {
   return (
     <div>
@@ -92,7 +35,7 @@ export default function ControllerAccepted({ networkStatus }) {
         <NetworkStatusDisplay status={networkStatus} />
       </div>
 
-      <PowerStatusDisplay />
+      <ConnectedPowerBlock />
     </div>
   );
 }
