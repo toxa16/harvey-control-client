@@ -47,7 +47,7 @@ function PowerStatusDisplay() {
 /**
  * Main control panel component.
  */
-export default function ControlPanel({ machineStatus }) {
+export default function ControlPanel({ networkStatus }) {
   return (
     <div className="pt-5">
       <div className="container">
@@ -56,7 +56,7 @@ export default function ControlPanel({ machineStatus }) {
         </div>
 
         <div className="mt-5">
-          <NetworkStatusDisplay status={machineStatus} />
+          <NetworkStatusDisplay status={networkStatus} />
         </div>
 
         <div className="mt-5">
