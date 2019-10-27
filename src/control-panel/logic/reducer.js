@@ -1,9 +1,10 @@
 import ActionType from './action-type.enum';
-import { NetworkStatus, ControllerStatus } from './enums';
+import { NetworkStatus, ControllerStatus, PowerStatus } from './enums';
 
 const initialState = {
   networkStatus: NetworkStatus.OFFLINE,
   controllerStatus: ControllerStatus.PENDING,
+  powerStatus: PowerStatus.STOPPED,
 };
 
 export default function controlPanelReducer(state = initialState, action) {
@@ -21,6 +22,7 @@ export default function controlPanelReducer(state = initialState, action) {
     case ActionType.MACHINE_OFFLINE: {
       return Object.assign({}, state, {
         networkStatus: NetworkStatus.OFFLINE,
+        powerStatus: PowerStatus.STOPPED,
       });
     }
     case ActionType.MACHINE_ONLINE: {
