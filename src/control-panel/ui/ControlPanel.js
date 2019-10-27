@@ -1,6 +1,18 @@
 import React from 'react';
 
-export default function ControlPanel() {
+import MachineStatus from '../logic/machine-status.enum';
+
+export default function ControlPanel({ machineStatus }) {
+  const isMachineOnline = machineStatus === MachineStatus.ONLINE;
+  const displayMachineStatus = () => {
+    if (isMachineOnline) {
+      return 'Online';
+    }
+    return 'Offline';
+  }
+  const machineStatusTextClassName = 'text-uppercase font-weight-bold ' +
+    (isMachineOnline ? 'text-success' : 'text-muted');
+
   return (
     <div className="pt-5">
       <div className="container">
@@ -10,7 +22,9 @@ export default function ControlPanel() {
         <div className="mt-5">
           <span>Machine network status:</span>
           {' '}
-          <span className="text-success text-uppercase font-weight-bold">Online</span>
+          <span className={machineStatusTextClassName}>
+            { displayMachineStatus() }
+          </span>
         </div>
         <div className="mt-5">
           <p>Power On/Off:</p>

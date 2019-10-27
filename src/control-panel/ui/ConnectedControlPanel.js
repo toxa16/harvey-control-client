@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import ControlPanel from './ControlPanel';
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    machineStatus: state.controlPanel.machineStatus,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
