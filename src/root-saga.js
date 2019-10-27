@@ -50,8 +50,12 @@ function* listenPowerButton(socket) {
   let action;
   while (true) {
     yield take(ActionType.MACHINE_START);
-    console.log('machine start');
     action = { type: ActionType.MACHINE_START };
+    yield put(action);
+    socket.send(JSON.stringify(action));
+    yield take(ActionType.MACHINE_STOP);
+    console.log('stop')
+    action = { type: ActionType.MACHINE_STOP };
     yield put(action);
     socket.send(JSON.stringify(action));
   }
