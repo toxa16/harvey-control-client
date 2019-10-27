@@ -1,5 +1,7 @@
-import { call, put, take } from 'redux-saga/effects';
+import { call, fork, put, take } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
+
+import ActionType from './control-panel/logic/action-type.enum';
 
 function websocketChannel(socket) {
   return eventChannel(emit => {
@@ -44,10 +46,22 @@ function* watchChannel(channel) {
   }
 }
 
+function* listenPowerButton(socket) {
+  let action;
+  while (true) {
+    yield take(ActionType.MACHINE_START);
+    console.log('machine start');
+    action = { type: ActionType.MACHINE_START };
+    socket.send(JSON.stringify(action));
+  }
+}
+
 export default function* rootSaga() {
   const url = process.env.REACT_APP_CONTROL_SERVER_URL ||
     'ws://localhost:3001';
   const socket = new WebSocket(url);
   const channel = yield call(websocketChannel, socket);
-  yield call(watchChannel, channel);
+  // TODO: arrange forks and calls (review parallelization)
+  yield fork(watchChannel, channel);
+  yield fork(listenPowerButton, socket);
 }
