@@ -1,20 +1,20 @@
-import MachineStatus from './machine-status.enum';
 import ActionType from './action-type.enum';
+import { NetworkStatus } from './enums';
 
 const initialState = {
-  machineStatus: MachineStatus.OFFLINE,
+  machineStatus: NetworkStatus.OFFLINE,
 };
 
 export default function controlPanelReducer(state = initialState, action) {
   switch (action.type) {
     case ActionType.MACHINE_OFFLINE: {
       return Object.assign({}, state, {
-        machineStatus: MachineStatus.OFFLINE,
+        machineStatus: NetworkStatus.OFFLINE,
       });
     }
     case ActionType.MACHINE_ONLINE: {
       return Object.assign({}, state, {
-        machineStatus: MachineStatus.ONLINE,
+        machineStatus: NetworkStatus.ONLINE,
       });
     }
     default: return state;
